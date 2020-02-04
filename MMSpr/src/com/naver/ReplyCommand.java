@@ -23,7 +23,7 @@ public class ReplyCommand implements Command {
 		BoardDAO dao = new BoardDAO();
 		dao.reply(orinum, title,content,author);
 		
-		return new CommandAction(true, "list.do");
+		return new CommandAction(true, "blist.do");
 	}
 
 }

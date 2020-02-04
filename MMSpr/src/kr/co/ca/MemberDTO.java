@@ -10,7 +10,7 @@ public class MemberDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String id;
-	private int pw;
+	private String pw;
 	private String name;
 	private String birthday;
 	
@@ -18,7 +18,7 @@ public class MemberDTO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDTO(String id, int pw, String name, String birthday) {
+	public MemberDTO(String id, String pw, String name, String birthday) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -34,11 +34,11 @@ public class MemberDTO implements Serializable{
 		this.id = id;
 	}
 
-	public int getPw() {
+	public String getPw() {
 		return pw;
 	}
 
-	public void setPw(int pw) {
+	public void setPw(String pw) {
 		this.pw = pw;
 	}
 
@@ -94,7 +94,5 @@ public class MemberDTO implements Serializable{
 	
 	
 	
-	
-	
-	
 }
+	

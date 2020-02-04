@@ -10,7 +10,7 @@ public class BoardDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int num;
-	private String author;
+	private String id;
 	private String title;
 	private String content;
 	private String writeday;
@@ -23,11 +23,11 @@ public class BoardDTO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public BoardDTO(int num, String author, String title, String content, String writeday, int readcnt, int repRoot,
+	public BoardDTO(int num, String id, String title, String content, String writeday, int readcnt, int repRoot,
 			int repStep, int repIndent) {
 		super();
 		this.num = num;
-		this.author = author;
+		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.writeday = writeday;
@@ -45,12 +45,12 @@ public class BoardDTO implements Serializable{
 		this.num = num;
 	}
 
-	public String getAuthor() {
-		return author;
+	public String getId() {
+		return id;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -137,9 +137,14 @@ public class BoardDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "BoardDTO [num=" + num + ", author=" + author + ", title=" + title + ", content=" + content
-				+ ", writeday=" + writeday + ", readcnt=" + readcnt + ", repRoot=" + repRoot + ", repStep=" + repStep
-				+ ", repIndent=" + repIndent + "]";
+		return "BoardDTO [num=" + num + ", id=" + id + ", title=" + title + ", content=" + content + ", writeday="
+				+ writeday + ", readcnt=" + readcnt + ", repRoot=" + repRoot + ", repStep=" + repStep + ", repIndent="
+				+ repIndent + "]";
 	}
+	
+	
+	
+	
+	
 	
 }

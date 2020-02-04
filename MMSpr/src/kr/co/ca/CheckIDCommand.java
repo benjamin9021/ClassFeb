@@ -6,6 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.naver.Command;
+import com.naver.CommandAction;
+
 public class CheckIDCommand implements Command {
 
 	@Override

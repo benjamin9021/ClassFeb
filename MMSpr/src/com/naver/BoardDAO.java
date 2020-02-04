@@ -57,7 +57,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, num);
-			pstmt.setString(2, dto.getAuthor());
+			pstmt.setString(2, dto.getId());
 			pstmt.setString(3, dto.getTitle());
 			pstmt.setString(4, dto.getContent());
 			pstmt.setInt(5, num);
@@ -100,7 +100,7 @@ public class BoardDAO {
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "select num, title, author, to_char(writeday, 'yyyy/mm/dd') writeday, readcnt, repRoot, repStep, repIndent from board order by repRoot desc, repStep asc";
+		String sql = "select num, title, id, to_char(writeday, 'yyyy/mm/dd') writeday, readcnt, repRoot, repStep, repIndent from board order by repRoot desc, repStep asc";
 		ResultSet rs = null;
 
 		try {
@@ -111,14 +111,14 @@ public class BoardDAO {
 			while (rs.next()) {
 				int num = rs.getInt(1);
 				String title = rs.getString(2);
-				String author = rs.getString(3);
+				String id = rs.getString(3);
 				String writeday = rs.getString(4);
 				int readcnt = rs.getInt(5);
 				int repRoot = rs.getInt(6);
 				int repStep = rs.getInt(7);
 				int repIndent = rs.getInt(8);
 
-				list.add(new BoardDTO(num, author, title, null, writeday, readcnt, repRoot, repStep, repIndent));
+				list.add(new BoardDTO(num, id, title, null, writeday, readcnt, repRoot, repStep, repIndent));
 			}
 
 		} catch (Exception e) {
@@ -228,7 +228,7 @@ public class BoardDAO {
 		   try {
 		      conn = dataFactory.getConnection();
 		      ps= conn.prepareStatement(sql);
-		      ps.setString(1, dto.getAuthor());
+		      ps.setString(1, dto.getId());
 		      ps.setString(2, dto.getTitle());
 		      ps.setString(3, dto.getContent());
 		      ps.setInt(4, dto.getNum());
@@ -240,7 +240,7 @@ public class BoardDAO {
 		   }
 		}
 
-	public void reply(int orinum, String title, String content, String author) {
+	public void reply(int orinum, String title, String content, String id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "insert into board (num, title, author, content, repRoot, repStep, repIndent) values (?,?,?,?,?,?,?) ";
@@ -256,7 +256,7 @@ public class BoardDAO {
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, title);
-			pstmt.setString(3, author);
+			pstmt.setString(3, id);
 			pstmt.setString(4, content);
 			pstmt.setInt(5, dto.getRepRoot());
 			pstmt.setInt(6, dto.getRepStep()+1);

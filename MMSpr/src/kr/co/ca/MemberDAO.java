@@ -45,7 +45,7 @@ public class MemberDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from member2";
+		String sql = "select * from member";
 		
 		try {
 			conn = dataFactory.getConnection();
@@ -55,7 +55,7 @@ public class MemberDAO {
 				String id = rs.getString("id");
 				String name = rs.getString("name");
 				String birthday = rs.getString("birthday");
-				list.add(new MemberDTO(id, 0, name, birthday));
+				list.add(new MemberDTO(id, null, name, birthday));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,17 +65,17 @@ public class MemberDAO {
 		return list;
 	}
 	
-	public MemberDTO login(String id, int pw) {
+	public MemberDTO login(String id, String pw) {
 		MemberDTO login = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "select name from member2 where id = ? and age = ?";
+		String sql = "select name from member where id = ? and age = ?";
 		ResultSet rs = null;
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setInt(2, pw);
+			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String name = rs.getString("name");
@@ -95,7 +95,7 @@ public class MemberDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from member2 where id = ?";
+		String sql = "select * from member where id = ?";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -104,7 +104,7 @@ public class MemberDAO {
 			if (rs.next()) {
 				String name = rs.getString("name");
 				String birthday = rs.getString("birthday");
-				dto = new MemberDTO(id, 0, name, birthday);
+				dto = new MemberDTO(id, null, name, birthday);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,11 +117,11 @@ public class MemberDAO {
 	public void update(MemberDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update member2 set pw=?, name=?, birthday=?  where id=?";
+		String sql = "update member set pw=?, name=?, birthday=?  where id=?";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getPw());
+			pstmt.setString(1, dto.getPw());
 			pstmt.setString(2, dto.getName());
 			pstmt.setString(3, dto.getBirthday());
 			pstmt.setString(4, dto.getId());
@@ -142,12 +142,12 @@ public class MemberDAO {
 	public void insert(MemberDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into member2 (id, pw, name, birthday) values (?,?,?,?)";
+		String sql = "insert into member (id, pw, name, birthday) values (?,?,?,?)";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getId());
-			pstmt.setInt(2, dto.getPw());
+			pstmt.setString(2, dto.getPw());
 			pstmt.setString(3, dto.getName());
 			pstmt.setString(4, dto.getBirthday());
 			pstmt.executeUpdate();
@@ -161,7 +161,7 @@ public class MemberDAO {
 	public void delete(String id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "delete from member2 where id = ?";
+		String sql = "delete from member where id = ?";
 		
 		try {
 			conn = dataFactory.getConnection();

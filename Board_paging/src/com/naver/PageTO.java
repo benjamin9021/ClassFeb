@@ -12,7 +12,7 @@ public class PageTO {
 	private int startNum;
 	private int endNum;
 	private int beginPageNum;
-	private int stopPageNum;
+	private int stopPageNum;  
 	
 	private List<BoardDTO> list;
 		
