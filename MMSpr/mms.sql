@@ -11,6 +11,8 @@ repStep number(4),
 repIndent number(4)
 )
 
+
+
 select * from board
 
 CREATE TABLE member(
